@@ -1,0 +1,42 @@
+<%- model_class = Pick -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:player_id) %></th>
+      <th><%= model_class.human_attribute_name(:match_id) %></th>
+      <th><%= model_class.human_attribute_name(:pool_id) %></th>
+      <th><%= model_class.human_attribute_name(:winner) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @picks.each do |pick| %>
+      <tr>
+        <td><%= link_to pick.id, pick_path(pick) %></td>
+        <td><%= pick.player_id %></td>
+        <td><%= pick.match_id %></td>
+        <td><%= pick.pool_id %></td>
+        <td><%= pick.winner %></td>
+        <td><%=l pick.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_pick_path(pick), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      pick_path(pick),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_pick_path,
+            :class => 'btn btn-primary' %>

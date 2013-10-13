@@ -21,16 +21,6 @@ class PlayersController < ApplicationController
   def edit
   end
 
-  def join_pool
-    if(params[:player_id].present?)
-      player = Player.find(params[:player_id])
-    else
-      player = Player.create(:name => params[:player_name])
-    end
-
-    #TODO create picks, redirect to picks
-  end
-
   # POST /players
   # POST /players.json
   def create

@@ -1,4 +1,6 @@
 Pools::Application.routes.draw do
+  resources :picks
+
   resources :players
 
   resources :matches

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player_id: 
+  match_id: 
+  pool_id: 
+  winner: 1
+
+two:
+  player_id: 
+  match_id: 
+  pool_id: 
+  winner: 1
