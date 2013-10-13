@@ -1,18 +1,18 @@
 <%- model_class = Pool -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %> - <%= link_to @pool.name,
+              edit_pool_path(@pool)%></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @pool.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:start_time) %>:</strong></dt>
-  <dd><%= @pool.start_time %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:end_time) %>:</strong></dt>
-  <dd><%= @pool.end_time %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:league_id) %>:</strong></dt>
-  <dd><%= @pool.league_id %></dd>
-</dl>
+Players
+*<%= @pool.players %>*
+
+
+<%= render :partial => 'matches/match_list', :locals => {matches: @pool.matches, hide_league: true} %>
+<%= link_to "Add Match",
+            new_match_path,
+            :class => 'btn btn-primary' %>
+
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
