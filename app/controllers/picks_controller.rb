@@ -13,24 +13,29 @@ class PicksController < ApplicationController
 
     #Find or Create Player
     @player = nil
-    if(params[:player_id].present?)
+
+    if(params[:player_id].present? && false)
       @player = Player.find(params[:player_id])
     elsif(params[:player_name].present?)
-      @player = Player.first_or_initialize(:name => params[:player_name])
+      @player = Player.where(:name => params[:player_name]).first
+      if(@player.nil?)
+        @player = Player.create(:name => params[:player_name])
+      end
     else
       raise "Supply either player_id or player_name"
     end
 
-    if(@pool.players.where(:id => @player.id).count() < 1)
-      @pool.players << @player
-      @pool.save
+
+    if(PlayersPool.where(:player => @player, :pool => @pool).count < 1)
+      PlayersPool.create(:player => @player, :pool => @pool)
     end
 
     @picks = []
     @pool.matches.each do |m|
-      pick = Pick.first_or_initialize(:player => @player, :pool => @pool, :match => m)
-      pick.winner ||= 0
-      pick.save!
+      pick = Pick.where(:player => @player, :pool => @pool, :match => m).first
+      if(pick.nil?)
+        pick = Pick.create(:player => @player, :pool => @pool, :match => m, :winner => 0)
+      end
       @picks << pick
     end
   end
