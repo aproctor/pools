@@ -33,11 +33,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development, :assets do
-  gem "therubyracer"
-  gem "less-rails"
-  gem 'twitter-bootstrap-rails'
-end
+gem "therubyracer"
+gem "less-rails"
+gem 'twitter-bootstrap-rails'
+
 
 gem 'rails_12factor', group: :production
 
