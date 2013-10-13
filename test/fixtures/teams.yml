@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  reference: MyString
+  location: MyString
+  sport_id: 
+
+two:
+  reference: MyString
+  location: MyString
+  sport_id: 
