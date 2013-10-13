@@ -1,3 +1,4 @@
 class Player < ActiveRecord::Base
-  has_and_belongs_to_many :pools
+  has_many :players_pools
+  has_many :pools, through: :players_pools
 end

@@ -2,25 +2,13 @@
 pick ||= @pick
 pool = pick.pool
 %>
+<td><%= pick.match.long_name %></td>
+<td><%= pick.match.spread %></td>
+<td>
 <%= form_for pick, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :player_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :player_id, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :match_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :match_id, [pick.match].collect {|l| [l.long_name, l.id]} %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :pool_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :pool_id, [pick.pool].collect {|l| [l.name, l.id]} %>
-    </div>
-  </div>
+  <%= f.hidden_field :player_id %>
+  <%= f.hidden_field :match_id %>
+  <%= f.hidden_field :pool_id %>
   <div class="control-group">
     <%= f.label :winner, :class => 'control-label' %>
     <div class="controls">
@@ -28,10 +16,6 @@ pool = pick.pool
       <%= f.radio_button :winner, "1" %> Away
     </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                picks_path, :class => 'btn' %>
-  </div>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
 <% end %>
+</td>

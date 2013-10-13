@@ -1,7 +1,18 @@
 <%- model_class = Pick -%>
 
-*
-<% @picks.each do |pick| %>
-  <%= render :partial => 'form', :locals => {:pick => pick} %>
-<% end %>
-*
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Match</th>
+      <th>Spread</th>
+      <th>Pick</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @picks.each do |pick| %>
+      <tr>
+        <%= render :partial => 'form', :locals => {:pick => pick} %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
