@@ -11,3 +11,18 @@
  *= require_self
  *= require bootstrap_and_overrides
  */
+
+.hidden {
+  display: none;
+}
+
+.pick_link {
+  display: inline-block;
+  border: 1px solid black;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.pick_link.selected {
+  color: red;
+}

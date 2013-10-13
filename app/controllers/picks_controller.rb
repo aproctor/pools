@@ -14,7 +14,7 @@ class PicksController < ApplicationController
     #Find or Create Player
     @player = nil
 
-    if(params[:player_id].present? && false)
+    if(params[:player_id].present?)
       @player = Player.find(params[:player_id])
     elsif(params[:player_name].present?)
       @player = Player.where(:name => params[:player_name]).first

@@ -19,4 +19,25 @@
 
 $( document ).ready(function() {
   $('.datepicker').datepicker({format: 'yyyy-mm-dd'})
+
+  $('form.ajax').submit(function() {
+      var valuesToSubmit = $(this).serialize();
+      $.ajax({
+          url: $(this).attr('action'), //sumbits it to the given url of the form
+          data: valuesToSubmit,
+          method: $(this).attr('method'),
+          dataType: "json" // you want a difference between normal and ajax-calls, and json is standard
+      }).success(function(json){
+          //act on result.
+      });
+      return false; // prevents normal behaviour
+  });
 });
+
+var setPick = function(pickEl, pickId, pickValue) {
+  $('#pick_'+pickId+'_row .selected').removeClass('selected');
+  $(pickEl).addClass('selected');
+  $formEl = $('#edit_pick_'+pickId);
+  $formEl.find('#pick_winner_'+pickValue).prop('checked', true);
+  $formEl.submit();
+};

@@ -4,8 +4,10 @@ pool = pick.pool
 %>
 <td><%= pick.match.long_name %></td>
 <td><%= pick.match.spread %></td>
-<td>
-<%= form_for pick, :html => { :class => 'form-horizontal' } do |f| %>
+<td id="pick_<%=pick.id%>_row">
+<%= pick_link(pick, pick.match.home_team, true) %>
+<%= pick_link(pick, pick.match.away_team, false) %>
+<%= form_for pick, :html => { :class => 'ajax hidden' } do |f| %>
   <%= f.hidden_field :player_id %>
   <%= f.hidden_field :match_id %>
   <%= f.hidden_field :pool_id %>
