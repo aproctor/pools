@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to league.id, league_path(league) %></td>
         <td><%= league.name %></td>
-        <td><%= league.sport_id %></td>
+        <td><%= league.sport.name %></td>
         <td><%=l league.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
