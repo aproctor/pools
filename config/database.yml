@@ -29,7 +29,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: pools_production
+  database: d19gidtfs8jncj
   pool: 5
-  username: pools
-  password:
+  username: vxvcuewnmzmgki
+  password: NT8WFAFsSA31Gj7OTPo5bOX5aU
+  port: 5432
