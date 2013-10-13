@@ -2,31 +2,31 @@
   <div class="control-group">
     <%= f.label :start_time, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :start_time, :class => 'text_field datepicker' %>
+      <%= f.text_field :start_time, :class => 'text_field datepicker', :value => (@match.start_time || Time.now).to_formatted_s()  %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :end_time, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :end_time, :class => 'text_field datepicker' %>
+      <%= f.text_field :end_time, :class => 'text_field datepicker', :value => (@match.end_time || (Time.now + 1.days)).to_formatted_s()  %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :home_team_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :home_team_id, :class => 'text_field' %>
+      <%= f.select :home_team_id, Team.all.collect {|l| [l.long_name, l.id]} %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :away_team_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :away_team_id, :class => 'text_field' %>
+      <%= f.select :away_team_id, Team.all.collect {|l| [l.long_name, l.id]} %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :spread, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :spread, :class => 'text_field' %>
+      <%= f.text_field :spread, :class => 'text_field', :value => 0 %>
     </div>
   </div>
   <div class="control-group">
@@ -44,7 +44,7 @@
   <div class="control-group">
     <%= f.label :league_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :league_id, :class => 'text_field' %>
+      <%= f.select :league_id, League.all.collect {|l| [l.name, l.id]} %>
     </div>
   </div>
 

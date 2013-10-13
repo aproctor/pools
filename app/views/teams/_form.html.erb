@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :league_id, "League", :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :league_id, League.all.collect {|l| [l.name, l.id]} %>
+      <%= f.select :league_id, League.all.collect {|l| [l.long_name, l.id]} %>
     </div>
   </div>
 

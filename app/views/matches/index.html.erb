@@ -5,32 +5,24 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:start_time) %></th>
-      <th><%= model_class.human_attribute_name(:end_time) %></th>
-      <th><%= model_class.human_attribute_name(:home_team_id) %></th>
-      <th><%= model_class.human_attribute_name(:away_team_id) %></th>
+      <th>Match</th>
       <th><%= model_class.human_attribute_name(:spread) %></th>
       <th><%= model_class.human_attribute_name(:home_score) %></th>
       <th><%= model_class.human_attribute_name(:away_score) %></th>
       <th><%= model_class.human_attribute_name(:league_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:start_time) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= link_to match.id, match_path(match) %></td>
-        <td><%= match.start_time %></td>
-        <td><%= match.end_time %></td>
-        <td><%= team_long_name(match.home_team) %></td>
-        <td><%= match.away_team_id %></td>
+        <td><%= link_to match_name(match.home_team, match.away_team), edit_match_path(match) %></td>
         <td><%= match.spread %></td>
         <td><%= match.home_score %></td>
         <td><%= match.away_score %></td>
-        <td><%= match.league_id %></td>
-        <td><%=l match.created_at %></td>
+        <td><%= match.league.long_name %></td>
+        <td><%= match.start_time %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_match_path(match), :class => 'btn btn-mini' %>

@@ -15,6 +15,11 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
+    @match.start_time = Time.zone.now()
+    @match.end_time = @match.start_time + 3.hours
+    @match.home_score = 0
+    @match.away_score = 0
+    @match.spread = 0.0
   end
 
   # GET /matches/1/edit
