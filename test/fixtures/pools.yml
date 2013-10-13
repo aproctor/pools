@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  start_time: 2013-10-13 10:18:35
+  end_time: 2013-10-13 10:18:35
+  league_id: 
+
+two:
+  name: MyString
+  start_time: 2013-10-13 10:18:35
+  end_time: 2013-10-13 10:18:35
+  league_id: 
