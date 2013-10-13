@@ -1,29 +1,26 @@
-<%= form_for(@team) do |f| %>
-  <% if @team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
-      <ul>
-      <% @team.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @team, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :reference, "Name", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reference, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :location, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :location, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :sport_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :sport_id, Sport.all.collect {|s| [s.name, s.id]} %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :reference %><br>
-    <%= f.text_field :reference %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :sport %><br>
-    <%= f.select :sport_id, Sport.all.collect {|s| [s.name, s.id]} %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                teams_path, :class => 'btn' %>
   </div>
 <% end %>
