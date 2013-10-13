@@ -1,0 +1,7 @@
+<%- model_class = Pick -%>
+
+*
+<% @picks.each do |pick| %>
+  <%= render :partial => 'form', :locals => {:pick => pick} %>
+<% end %>
+*

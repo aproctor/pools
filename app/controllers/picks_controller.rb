@@ -1,67 +1,37 @@
 class PicksController < ApplicationController
   before_action :set_pick, only: [:show, :edit, :update, :destroy]
 
-  # GET /picks
-  # GET /picks.json
-  def index
-    @picks = Pick.all
-  end
-
-  # GET /picks/1
-  # GET /picks/1.json
-  def show
-  end
-
-  # GET /picks/new
-  def new
-
+  # GET /picks/setup
+  def setup
     #Find Pool
-    pool = nil
+    @pool = nil
     if(params[:pool_id].present?)
-      pool = Pool.find(params[:pool_id])
+      @pool = Pool.find(params[:pool_id])
     else
       raise "Must supply a pool"
     end
 
     #Find or Create Player
-    player = nil
+    @player = nil
     if(params[:player_id].present?)
-      player = Player.find(params[:player_id])
+      @player = Player.find(params[:player_id])
     elsif(params[:player_name].present?)
-      player = Player.create(:name => params[:player_name])
+      @player = Player.first_or_initialize(:name => params[:player_name])
     else
       raise "Supply either player_id or player_name"
     end
 
-    first_pick = nil
-    pool.matches.each do |m|
-      pick = Pick.first_or_initialize(:player => player, :pool => pool, :match => m)
-      pick.winner = 0
-      pick.save!
-      first_pick ||= pick
+    if(@pool.players.where(:id => @player.id).count() < 1)
+      @pool.players << @player
+      @pool.save
     end
-    @pick = first_pick
 
-    #redirect_to edit_pick_path(@pick)
-  end
-
-  # GET /picks/1/edit
-  def edit
-  end
-
-  # POST /picks
-  # POST /picks.json
-  def create
-    @pick = Pick.new(pick_params)
-
-    respond_to do |format|
-      if @pick.save
-        format.html { redirect_to @pick, notice: 'Pick was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @pick }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @pick.errors, status: :unprocessable_entity }
-      end
+    @picks = []
+    @pool.matches.each do |m|
+      pick = Pick.first_or_initialize(:player => @player, :pool => @pool, :match => m)
+      pick.winner ||= 0
+      pick.save!
+      @picks << pick
     end
   end
 
@@ -76,16 +46,6 @@ class PicksController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @pick.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /picks/1
-  # DELETE /picks/1.json
-  def destroy
-    @pick.destroy
-    respond_to do |format|
-      format.html { redirect_to picks_url }
-      format.json { head :no_content }
     end
   end
 

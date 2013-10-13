@@ -1,5 +1,7 @@
 Pools::Application.routes.draw do
-  resources :picks
+
+  resources :picks, only: [:index, :update]
+  get 'picks/setup' => 'picks#setup'
 
   resources :players
 

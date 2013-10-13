@@ -5,7 +5,15 @@
 </div>
 
 Players
-*<%= @pool.players %>*
+<% @pool.players.each do |player| %>
+  <%= p.inspect %>
+<% end %>
+<%= form_tag(picks_setup_path, method: "get") do %>
+  <%= label_tag(:player_name, "Name:") %>
+  <%= text_field_tag(:player_name) %>
+  <%= hidden_field_tag(:pool_id, @pool.id) %>
+  <%= submit_tag("Join Pool") %>
+<% end %>
 
 
 <%= render :partial => 'matches/match_list', :locals => {matches: @pool.matches, hide_league: true} %>
