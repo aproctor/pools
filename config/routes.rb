@@ -1,4 +1,6 @@
 Pools::Application.routes.draw do
+  resources :leagues
+
   resources :teams
 
   resources :sports

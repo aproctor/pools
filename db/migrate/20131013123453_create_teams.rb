@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |t|
       t.string :reference
       t.string :location
-      t.references :sport, index: true
+      t.references :league, index: true, :null => false
 
       t.timestamps
     end

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013123453) do
+ActiveRecord::Schema.define(version: 20131013135652) do
+
+  create_table "leagues", force: true do |t|
+    t.string   "name"
+    t.integer  "sport_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "leagues", ["sport_id"], name: "index_leagues_on_sport_id", using: :btree
 
   create_table "sports", force: true do |t|
     t.string   "name"
@@ -22,11 +31,11 @@ ActiveRecord::Schema.define(version: 20131013123453) do
   create_table "teams", force: true do |t|
     t.string   "reference"
     t.string   "location"
-    t.integer  "sport_id"
+    t.integer  "league_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "teams", ["sport_id"], name: "index_teams_on_sport_id", using: :btree
+  add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree
 
 end

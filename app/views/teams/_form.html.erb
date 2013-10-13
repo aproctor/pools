@@ -12,9 +12,9 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :sport_id, :class => 'control-label' %>
+    <%= f.label :league_id, "League", :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :sport_id, Sport.all.collect {|s| [s.name, s.id]} %>
+      <%= f.select :league_id, League.all.collect {|l| [l.name, l.id]} %>
     </div>
   </div>
 
